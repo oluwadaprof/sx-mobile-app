@@ -1,10 +1,17 @@
-import { COLORS } from "@/constants/Colors";
-import { View, Platform, Text, Pressable } from "react-native";
-// import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import { View } from "react-native";
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import TabBarButton from "./TabBarButton";
 
-export function TabBar({ state, descriptors, navigation }) {
+export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View
+      style={{
+        flexDirection: "row",
+        marginBottom: 20,
+        alignItems: "center",
+        marginHorizontal: "auto",
+      }}
+    >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -36,19 +43,14 @@ export function TabBar({ state, descriptors, navigation }) {
         };
 
         return (
-          <Pressable
-            // href={buildHref(route.name, route.params)}
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarButtonTestID}
-            onPress={onPress}
+          <TabBarButton
+            key={route.name}
+            isFocused={isFocused}
             onLongPress={onLongPress}
-            style={{ flex: 1 }}
-          >
-            <Text style={{ color: isFocused ? COLORS.primary : COLORS.black }}>
-              {label}
-            </Text>
-          </Pressable>
+            onPress={onPress}
+            label={label}
+            routeName={route.name}
+          />
         );
       })}
     </View>
