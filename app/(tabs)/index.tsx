@@ -1,4 +1,11 @@
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import { ProductType } from "@/types/type";
 // import axios from "axios";
@@ -7,6 +14,7 @@ import Header from "@/component/Header";
 import { Stack } from "expo-router";
 import data from "@/data/db.json";
 import ProductItem from "@/component/ProductItem";
+import { COLORS } from "@/constants/Colors";
 
 type Props = {};
 
@@ -37,13 +45,22 @@ const HomeScreen = (props: Props) => {
         }}
       />
       <View style={styles.container}>
-        <Text>Home Screens</Text>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.title}>For you 🫵</Text>
+          <TouchableOpacity>
+            <Text style={styles.titleButton}>See all 📃</Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
-          data={products} 
+          data={products}
           numColumns={2}
+          columnWrapperStyle={{
+            justifyContent: "space-between",
+            marginBottom: 20,
+          }}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ index, item }) => (
-            <ProductItem item={item} />
+            <ProductItem index={index} item={item} />
           )}
         />
       </View>
@@ -55,9 +72,23 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
-  }
-
+    marginHorizontal: 20,
+  },
+  titleWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "600",
+    letterSpacing: 0.6,
+    color: COLORS.black,
+  },
+  titleButton: {
+    fontSize: 14,
+    fontWeight: "500",
+    letterSpacing: 0.6,
+    color: COLORS.black,
+  },
 });
