@@ -1,25 +1,19 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { ProductType } from "@/types/type";
+import { CategoryType, ProductType } from "@/types/type";
 // import axios from "axios";
-
+import data from "@/data/db.json";
 import Header from "@/component/Header";
 import { Stack } from "expo-router";
-import data from "@/data/db.json";
-import ProductItem from "@/component/ProductItem";
-import { COLORS } from "@/constants/Colors";
+import ProductList from "@/component/ProductList";
+import Categories from "@/component/Categories";
+import FlashSales from "@/component/FlashSales";
 
 type Props = {};
 
 const HomeScreen = (props: Props) => {
   const [products, setProducts] = useState<ProductType[]>(data.products);
+  const [categories, setCategories] = useState<CategoryType[]>(data.categories);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // const getProduct = async () => {
@@ -44,51 +38,13 @@ const HomeScreen = (props: Props) => {
           statusBarStyle: "light",
         }}
       />
-      <View style={styles.container}>
-        <View style={styles.titleWrapper}>
-          <Text style={styles.title}>For you 🫵</Text>
-          <TouchableOpacity>
-            <Text style={styles.titleButton}>See all 📃</Text>
-          </TouchableOpacity>
-        </View>
-        <FlatList
-          data={products}
-          numColumns={2}
-          columnWrapperStyle={{
-            justifyContent: "space-between",
-            marginBottom: 20,
-          }}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ index, item }) => (
-            <ProductItem index={index} item={item} />
-          )}
-        />
-      </View>
+      <Categories categories={categories} />
+      <FlashSales />
+      <ProductList products={products} />
     </>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 20,
-  },
-  titleWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "600",
-    letterSpacing: 0.6,
-    color: COLORS.black,
-  },
-  titleButton: {
-    fontSize: 14,
-    fontWeight: "500",
-    letterSpacing: 0.6,
-    color: COLORS.black,
-  },
-});
+const styles = StyleSheet.create({});
