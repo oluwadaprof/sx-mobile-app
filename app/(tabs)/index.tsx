@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { CategoryType, ProductType } from "@/types/type";
 // import axios from "axios";
@@ -14,6 +14,9 @@ type Props = {};
 const HomeScreen = (props: Props) => {
   const [products, setProducts] = useState<ProductType[]>(data.products);
   const [categories, setCategories] = useState<CategoryType[]>(data.categories);
+  const [salesProducts, setSalesProducts] = useState<ProductType[]>(
+    data.products
+  );
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // const getProduct = async () => {
@@ -39,7 +42,13 @@ const HomeScreen = (props: Props) => {
         }}
       />
       <Categories categories={categories} />
-      <FlashSales />
+      <FlashSales products={salesProducts} />
+      <View style={{ marginHorizontal: 20, marginBottom: 10 }}>
+        <Image
+          source={require("@/assets/images/sale-banner.jpg")}
+          style={{ width: "100%", height: 150, borderRadius: 15 }}
+        />
+      </View>
       <ProductList products={products} />
     </>
   );

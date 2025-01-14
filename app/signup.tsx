@@ -110,6 +110,8 @@ const styles = StyleSheet.create({
   loginTextSpan: {
     color: COLORS.primary,
     fontWeight: "600",
+    marginTop: 10,
+    height: 20
   },
   divider: {
     borderTopColor: COLORS.gray,

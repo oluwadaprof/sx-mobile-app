@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   titleWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
+    marginVertical: 7,
     marginHorizontal: 20,
   },
   title: {

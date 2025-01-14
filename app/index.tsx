@@ -50,14 +50,14 @@ const WelcomeScreen = (props: Props) => {
 
              <SocialLoginButtons emailHref={"/signup"}/>
 
-              <Text style={styles.loginText}>
-                Already have an account?{" "}
+              <View style={{flexDirection: 'row', alignItems: 'center'}} >
+               <Text style={styles.loginText}> Already have an account?{" "}</Text>
                 <Link href={"/signin"} asChild>
                   <TouchableOpacity>
                     <Text style={styles.loginTextSpan}>SignIn</Text>
                   </TouchableOpacity>
                 </Link>
-              </Text>
+              </View>
             </View>
           </LinearGradient>
         </View>
@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   loginTextSpan: {
+    marginTop: 30,
     color: COLORS.primary,
     fontWeight: "600",
   },

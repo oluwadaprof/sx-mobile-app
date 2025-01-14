@@ -13,7 +13,7 @@ const SignInScreen = (props: Props) => {
     <>
       <Stack.Screen
         options={{
-          headerTitle: "Sign Up",
+          headerTitle: "Sign In",
           headerLeft: () => (
             <TouchableOpacity
               style={{ flex: 0.8 }}
@@ -106,6 +106,8 @@ const styles = StyleSheet.create({
   loginTextSpan: {
     color: COLORS.primary,
     fontWeight: "600",
+    marginTop: 10,
+    height: 20,
   },
   divider: {
     borderTopColor: COLORS.gray,
